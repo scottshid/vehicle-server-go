@@ -1,15 +1,15 @@
 package auth
 
 import (
-	"github.com/dgrijalva/jwt-go"
-	"fmt"
-	"net/http"
+    "github.com/dgrijalva/jwt-go"
+    "fmt"
+    "net/http"
     "github.com/scottshid/app"
     "context"
 )
 
 func ValidateMiddleware(next app.AppHandler) http.HandlerFunc {
-    return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request)  {
+    return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
         tokenHeader := req.Header.Get("X-AUTH-TOKEN")
         token, err := jwt.Parse(tokenHeader, func(token *jwt.Token) (interface{}, error) {
             if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {

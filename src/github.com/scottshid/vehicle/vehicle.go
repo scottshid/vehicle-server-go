@@ -20,13 +20,13 @@ func HandleGetVehicleMakes(writer http.ResponseWriter, req *http.Request) *app.R
     vehiclesCollection.Find(bson.M{}).Distinct("make", &result)
     payload := make(map[string]interface{})
     payload["results"] = result
-    return &app.RestResponse{Code:http.StatusOK, Error: nil, Payload: payload }
+    return &app.RestResponse{Code: http.StatusOK, Error: nil, Payload: payload}
 }
 
 func HandleGetVehicleModels(writer http.ResponseWriter, req *http.Request) *app.RestResponse {
 
-    var results []struct{
-        Make string
+    var results []struct {
+        Make  string
         Model string
     }
     vars := mux.Vars(req)

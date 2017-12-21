@@ -4,11 +4,12 @@ import (
     "net/http"
     "encoding/json"
 )
+
 // Abstraction for rest endpoints which will take care of taking a map and creating json from it
 type RestResponse struct {
-    Error error
+    Error   error
     Payload map[string]interface{}
-    Code int
+    Code    int
 }
 
 type AppHandler func(http.ResponseWriter, *http.Request) *RestResponse
@@ -31,5 +32,3 @@ func (fn AppHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
         }
     }
 }
-
-
